@@ -17,5 +17,6 @@ import org.springframework.stereotype.Controller;
 @RequestMapping("/qiqi.jiaoyou_app/menu")
 public class MenuController {
 
+
 }
 
