@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.DynamicCommentsOfCarUsersMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.DynamicCommentsOfCarUsers">
+        <id column="id" property="id" />
+        <result column="dynamicIdOrCommentId" property="dynamicIdOrCommentId" />
+        <result column="memberId" property="memberId" />
+        <result column="memberHead" property="memberHead" />
+        <result column="memberNickName" property="memberNickName" />
+        <result column="context" property="context" />
+        <result column="addTime" property="addTime" />
+        <result column="level" property="level" />
+        <result column="lable" property="lable" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, dynamicIdOrCommentId, memberId, memberHead, memberNickName, context, addTime, level,lable
+    </sql>
+
+
+    <select id="dynamicDetails" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM dynamic_comments_of_car_users WHERE FIND_IN_SET(id,getChildrenOrgOfCar(#{id}));
+    </select>
+</mapper>

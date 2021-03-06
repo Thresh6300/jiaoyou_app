@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.CollectMapper">
+
+    <resultMap type="com.qiqi.jiaoyou_app.pojo.ShopManage" id="ShopManageMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="shopName" column="shop_name" jdbcType="VARCHAR"/>
+        <result property="shopPrice" column="shop_price" jdbcType="NUMERIC"/>
+        <result property="shopSpecs" column="shop_specs" jdbcType="VARCHAR"/>
+        <result property="shopIntroduce" column="shop_introduce" jdbcType="VARCHAR"/>
+        <result property="shopImg" column="shop_img" jdbcType="VARCHAR"/>
+        <result property="shopStatus" column="shop_status" jdbcType="VARCHAR"/>
+        <result property="shopIsTop" column="shop_is_top" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="place" column="place" jdbcType="VARCHAR"/>
+        <result property="paymentNumber" column="payment_number" jdbcType="INTEGER"/>
+        <result property="businessName" column="business_name" jdbcType="VARCHAR"/>
+        <result property="businessIcon" column="business_icon" jdbcType="VARCHAR"/>
+        <result property="serverTypeId" column="server_type_id" jdbcType="INTEGER"/>
+        <result property="serverTitle" column="server_title" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="width" column="width" jdbcType="VARCHAR"/>
+        <result property="collectUserId" column="collect_user_id" jdbcType="INTEGER"/>
+        <result property="collectShopId" column="collect_shop_id" jdbcType="INTEGER"/>
+        <result property="collectServerId" column="collect_server_id" jdbcType="INTEGER"/>
+    </resultMap>
+    <!-- union all 连表字段一一对应-->
+    <sql id="selectVo">
+
+            SELECT id, shop_name, shop_price, shop_specs, shop_introduce, shop_img, s.create_time, update_time, place, payment_number,shop_is_top,business_name,business_icon,
+            @rownum:=@rownum+1 server_type_id,@rownum:=@rownum+1 server_title, type, city, width, collect_user_id, collect_shop_id, collect_server_id
+            from jiaoyou.shop_manage s
+            INNER join collect c2 on s.id = c2.collect_shop_id
+            union all
+            SELECT  id, server_title shop_name, server_price shop_price,shop_specs,server_introduce shop_introduce,server_cover shop_img, s.create_time, update_time ,
+            place , payment_number,  server_is_top shop_is_top,business_name,business_icon,server_type_id,
+            (select server_title from server_info_type where id=server_type_id) server_title, type, city, width, collect_user_id, collect_shop_id, collect_server_id
+            from jiaoyou.server_info_manager s
+            INNER join collect c2 on s.id = c2.collect_server_id
+
+    </sql>
+    <!--通过实体作为筛选条件查询-->
+    <select id="collectMyList" resultMap="ShopManageMap">
+        select * from (<include refid="selectVo"/>) a
+        where collect_user_id=#{collectUserId}
+        LIMIT #{startIndex},#{pageSize}
+    </select>
+
+    <select id="count" resultType="integer">
+        select count(1) from (<include refid="selectVo"/>) a
+        where collect_user_id=#{collectUserId}
+    </select>
+
+    <select id="searchList" resultMap="ShopManageMap">
+        select * from ( select * from (
+        SELECT id, shop_name, shop_price, shop_specs, shop_introduce, shop_img, create_time, update_time, place,
+        payment_number,shop_is_top,business_name,business_icon,
+        @rownum:=@rownum+1 server_type_id,@rownum:=@rownum+1 server_title, type, width, city
+        from jiaoyou.shop_manage
+        union all
+        SELECT id, server_title shop_name, server_price shop_price,shop_specs,server_introduce
+        shop_introduce,@rownum:=@rownum+1 shop_img, create_time, update_time ,
+        place , payment_number, server_is_top shop_is_top,business_name,business_icon,server_type_id,
+        (select server_title from server_info_type where id=server_type_id) server_title, type, width, city
+        from jiaoyou.server_info_manager
+        ) a
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="shopName != null and shopName != ''">
+                and shop_name = #{shopName}
+            </if>
+            <if test="shopPrice != null">
+                and shop_price = #{shopPrice}
+            </if>
+            <if test="startPrice != null and endPrice != null ">
+                and shop_price BETWEEN #{startPrice} AND #{endPrice}
+            </if>
+            <if test="startPrice != null">
+                and shop_price  &gt;= #{startPrice}
+            </if>
+            <if test="endPrice != null">
+                and shop_price &lt;= #{endPrice}
+            </if>
+            <if test="shopSpecs != null and shopSpecs != ''">
+                and shop_specs = #{shopSpecs}
+            </if>
+            <if test="shopIntroduce != null and shopIntroduce != ''">
+                and shop_introduce = #{shopIntroduce}
+            </if>
+            <if test="shopImg != null and shopImg != ''">
+                and shop_img = #{shopImg}
+            </if>
+            <if test="shopStatus != null and shopStatus != ''">
+                and shop_status = #{shopStatus}
+            </if>
+            <if test="shopIsTop != null and shopIsTop != ''">
+                and shop_is_top = #{shopIsTop}
+            </if>
+            <if test="businessName != null and businessName != ''">
+                and business_name = #{businessName}
+            </if>
+            <if test="businessIcon != null and businessIcon != ''">
+                and business_icon = #{businessIcon}
+            </if>
+            <if test="place != null and place != ''">
+                and place = #{place}
+            </if>
+            <if test="paymentNumber != null">
+                and payment_number = #{paymentNumber}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="city != null and city != ''">
+                and city like concat(concat('%',#{city}),'%')  or city = ""
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        <if test="paymentNumberIsAsc != null and paymentNumberIsAsc !='' and shopPriceIsAsc != null and shopPriceIsAsc != ''">
+            order by payment_number ${paymentNumberIsAsc} , shop_price ${shopPriceIsAsc}
+        </if>
+        ) p
+        <where>
+        <if test="searchValue != null and searchValue != ''">
+            and shop_name like concat(concat('%',#{searchValue}),'%')
+            or shop_introduce like concat(concat('%',#{searchValue}),'%')
+            or business_name like concat(concat('%',#{searchValue}),'%')
+            or place like concat(concat('%',#{searchValue}),'%')
+        </if>
+        </where>
+        LIMIT #{startIndex}, #{pageSize}
+    </select>
+
+
+    <select id="searchCount" resultType="integer">
+        select count(1) from (select * from (
+        SELECT id, shop_name, shop_price, shop_specs, shop_introduce, shop_img, create_time, update_time, place,
+        payment_number,shop_is_top,business_name,business_icon,
+        @rownum:=@rownum+1 server_type_id,@rownum:=@rownum+1 server_title, type, width, city
+        from jiaoyou.shop_manage
+        union all
+        SELECT id, server_title shop_name, server_price shop_price,shop_specs,server_introduce
+        shop_introduce,@rownum:=@rownum+1 shop_img, create_time, update_time ,
+        place , payment_number, server_is_top shop_is_top,business_name,business_icon,server_type_id,
+        (select server_title from server_info_type where id=server_type_id) server_title, type, width, city
+        from jiaoyou.server_info_manager
+        ) a
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="shopName != null and shopName != ''">
+                and shop_name = #{shopName}
+            </if>
+            <if test="shopPrice != null">
+                and shop_price = #{shopPrice}
+            </if>
+            <if test="startPrice != null and endPrice != null ">
+                and shop_price BETWEEN #{startPrice} AND #{endPrice}
+            </if>
+            <if test="startPrice != null">
+                and shop_price  &gt;= #{startPrice}
+            </if>
+            <if test="endPrice != null">
+                and shop_price &lt;= #{endPrice}
+            </if>
+            <if test="shopSpecs != null and shopSpecs != ''">
+                and shop_specs = #{shopSpecs}
+            </if>
+            <if test="shopIntroduce != null and shopIntroduce != ''">
+                and shop_introduce = #{shopIntroduce}
+            </if>
+            <if test="shopImg != null and shopImg != ''">
+                and shop_img = #{shopImg}
+            </if>
+            <if test="shopStatus != null and shopStatus != ''">
+                and shop_status = #{shopStatus}
+            </if>
+            <if test="shopIsTop != null and shopIsTop != ''">
+                and shop_is_top = #{shopIsTop}
+            </if>
+            <if test="businessName != null and businessName != ''">
+                and business_name = #{businessName}
+            </if>
+            <if test="businessIcon != null and businessIcon != ''">
+                and business_icon = #{businessIcon}
+            </if>
+            <if test="place != null and place != ''">
+                and place = #{place}
+            </if>
+            <if test="paymentNumber != null">
+                and payment_number = #{paymentNumber}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="city != null and city != ''">
+                and city like concat(concat('%',#{city}),'%')
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        <if test="orderByColumn != null and orderByColumn != '' and isAsc != null and isAsc != ''">
+            order by ${orderByColumn} ${isAsc}
+        </if>) p
+        <where>
+            <if test="searchValue != null and searchValue != ''">
+                and shop_name like concat(concat('%',#{searchValue}),'%')
+                or shop_introduce like concat(concat('%',#{searchValue}),'%')
+                or business_name like concat(concat('%',#{searchValue}),'%')
+                or place like concat(concat('%',#{searchValue}),'%')
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

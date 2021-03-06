@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		 <link rel="stylesheet" href="../invitation.css">
+		 <link rel="stylesheet" href="../need/layer.css">
+		 <script src="../layer.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div class="invitation">
+			<img src="../imgs/title.png" alt="" class="title">
+			<div class="content">
+				<p class="ma">邀请码</p>
+				<div class="copy">
+					<p>HUY125</p>
+					<span onclick="copyArticle('你好小时就下班时间成本四大皆空')">复制</span>
+				</div>
+				<div class="lianjie"> 
+					<a href="javascript:;" class="a1">
+						<img src="../imgs/ios.png" alt="">
+						<span>ios下载</span>
+					</a>
+					<a href="javascript:;">
+						<img src="../imgs/android.png" alt="">
+						<span>Android下载</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</body>
+<script>
+	function copyArticle(val) {
+		var input = document.createElement('input');
+		input.setAttribute('id','copyId');
+		input.value= val
+		document.querySelector('body').appendChild(input)
+		const range = document.createRange();
+		range.selectNode(document.getElementById('copyId'));
+		const selection = window.getSelection();
+		if(selection.rangeCount> 0)selection.removeAllRanges();
+		selection.addRange(range);
+		document.execCommand('copy');
+		document.getElementById('copyId').remove()
+		//提示
+		layer.open({
+			content: '复制成功'
+			,skin: 'msg'
+			,time: 2 //2秒后自动关闭
+		});
+	}
+</script>
+</html>

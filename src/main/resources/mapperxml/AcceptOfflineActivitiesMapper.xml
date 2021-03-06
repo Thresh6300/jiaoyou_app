@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.AcceptOfflineActivitiesMapper">
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.AcceptOfflineActivities">
+        <id column="id" property="id" />
+        <result column="sendOfflineActivities" property="sendOfflineActivities" />
+        <result column="acceptMemberId" property="acceptMemberId" />
+        <result column="acceptMemberHead" property="acceptMemberHead" />
+        <result column="acceptMemberNickName" property="acceptMemberNickName" />
+        <result column="acceptMemberSex" property="acceptMemberSex" />
+        <result column="acceptMemberAge" property="acceptMemberAge" />
+        <result column="keepAnAppointmentTime" property="keepAnAppointmentTime" />
+        <result column="keepAnAppointmentState" property="keepAnAppointmentState" />
+        <result column="oldState" property="oldState" />
+        <result column="closeType" property="closeType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        closeType, oldState, id, sendOfflineActivities, acceptMemberId, acceptMemberHead, acceptMemberNickName, acceptMemberSex, acceptMemberAge, keepAnAppointmentTime, keepAnAppointmentState
+    </sql>
+
+</mapper>

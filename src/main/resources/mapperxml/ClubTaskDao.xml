@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.ClubTaskMapper">
+
+    <resultMap type="com.qiqi.jiaoyou_app.pojo.ClubTask" id="ClubTaskMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="taskContent" column="task_content" jdbcType="VARCHAR"/>
+        <result property="taskUrl" column="task_url" jdbcType="VARCHAR"/>
+        <result property="taskNumber" column="task_number" jdbcType="INTEGER"/>
+        <result property="taskNotNumber" column="task_not_number" jdbcType="INTEGER"/>
+        <result property="taskHasNumber" column="task_has_number" jdbcType="INTEGER"/>
+        <result property="memberId" column="member_id" jdbcType="INTEGER"/>
+        <result property="clubId" column="club_id" jdbcType="INTEGER"/>
+        <result property="gamelabelid" column="gameLabelId" jdbcType="INTEGER"/>
+    </resultMap>
+
+   <select id="getwageNum"
+           parameterType="Integer"
+           resultType="String">
+SELECT
+	c.wage
+FROM
+	task_answer_questions a
+LEFT JOIN club_task b ON a.task_id = b.id
+LEFT JOIN club c ON b.club_id = c.club_id
+WHERE
+	a.member_id = #{memberId}
+   </select>
+
+</mapper>

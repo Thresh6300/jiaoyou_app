@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.MembershipSettingsMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.MembershipSettings">
+        <id column="id" property="id" />
+        <result column="memberId" property="memberId" />
+        <result column="sameCityWithinState" property="sameCityWithinState" />
+        <result column="sameCityExternalState" property="sameCityExternalState" />
+        <result column="confidentialityOfInformationState" property="confidentialityOfInformationState" />
+        <result column="friendMessageState" property="friendMessageState" />
+        <result column="noticeState" property="noticeState" />
+        <result column="dynamicResponseState" property="dynamicResponseState" />
+        <result column="worldInformation" property="worldInformation" />
+        <result column="editState" property="editState" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, memberId, sameCityWithinState, worldInformation, sameCityExternalState, confidentialityOfInformationState, friendMessageState, noticeState, dynamicResponseState, editState
+    </sql>
+
+</mapper>

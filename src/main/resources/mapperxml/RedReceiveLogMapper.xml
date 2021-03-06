@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.RedReceiveLogMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.RedReceiveLog">
+        <id column="red_receive_log_id" property="redReceiveLogId" />
+        <result column="red_receive_log_member_id" property="redReceiveLogMemberId" />
+        <result column="red_receive_log_member_nick_name" property="redReceiveLogMemberNickName" />
+        <result column="red_receive_log_member_head" property="redReceiveLogMemberHead" />
+        <result column="red_receive_log_red_id" property="redReceiveLogRedId" />
+        <result column="red_receive_log_gold_size" property="redReceiveLogGoldSize" />
+        <result column="red_receive_log_time" property="redReceiveLogTime" />
+        <result column="red_receive_log_is_luck" property="redReceiveLogIsLuck" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        red_receive_log_id AS redReceiveLogId, red_receive_log_member_id AS redReceiveLogMemberId, red_receive_log_member_nick_name AS redReceiveLogMemberNickName, red_receive_log_member_head AS redReceiveLogMemberHead, red_receive_log_red_id AS redReceiveLogRedId, red_receive_log_gold_size AS redReceiveLogGoldSize, red_receive_log_time AS redReceiveLogTime, red_receive_log_is_luck AS redReceiveLogIsLuck
+    </sql>
+
+</mapper>

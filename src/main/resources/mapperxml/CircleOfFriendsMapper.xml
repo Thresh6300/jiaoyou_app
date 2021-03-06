@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.CircleOfFriendsMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.CircleOfFriends">
+        <id column="id" property="id" />
+        <result column="memerId" property="memerId" />
+        <result column="memberHead" property="memberHead" />
+        <result column="memberNickName" property="memberNickName" />
+        <result column="memberSex" property="memberSex" />
+        <result column="memberAge" property="memberAge" />
+        <result column="city" property="city" />
+        <result column="addTime" property="addTime" />
+        <result column="context" property="context" />
+        <result column="images" property="images" />
+        <result column="video" property="video" />
+        <result column="likeSize" property="likeSize" />
+        <result column="commentSize" property="commentSize" />
+        <result column="state" property="state" />
+        <result column="strangersInTheSameCity" property="strangersInTheSameCity" />
+        <result column="strangersOutsideTheCity" property="strangersOutsideTheCity" />
+        <result column="citySynchronization" property="citySynchronization" />
+        <result column="defaultType" property="defaultType" />
+        <result column="lable" property="lable" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+strangersInTheSameCity,strangersOutsideTheCity,citySynchronization,defaultType,lable,
+        id, memerId, memberHead, memberNickName, memberSex, memberAge, province, city, area, title, addTime, context,images,video, likeSize, commentSize, state
+    </sql>
+
+</mapper>

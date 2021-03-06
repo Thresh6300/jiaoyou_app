@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.OpinionMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.Opinion">
+        <id column="id" property="id" />
+        <result column="memberId" property="memberId" />
+        <result column="memberName" property="memberName" />
+        <result column="memberHead" property="memberHead" />
+        <result column="memberPhone" property="memberPhone" />
+        <result column="context" property="context" />
+        <result column="images" property="images" />
+        <result column="addTime" property="addTime" />
+        <result column="state" property="state" />
+        <result column="reason" property="reason" />
+        <result column="handleTime" property="handleTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, memberId, memberName, memberHead, memberPhone, context, images, addTime, state, reason, handleTime
+    </sql>
+
+</mapper>

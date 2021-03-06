@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.PlatformParameterSettingMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.PlatformParameterSetting">
+        <id column="id" property="id" />
+        <result column="launchPage" property="launchPage" />
+        <result column="drawInProportion" property="drawInProportion" />
+        <result column="telephone" property="telephone" />
+        <result column="proportionOfReturnedServants" property="proportionOfReturnedServants" />
+        <result column="selfWithdrawal" property="selfWithdrawal" />
+        <result column="giftExperienceRatio" property="giftExperienceRatio" />
+        <result column="proportionOfExperience" property="proportionOfExperience" />
+        <result column="unitPriceOfLoudspeaker" property="unitPriceOfLoudspeaker" />
+        <result column="exchangeRateOfGoldDiamond" property="exchangeRateOfGoldDiamond" />
+        <result column="exchangeRateForBlackDiamonds" property="exchangeRateForBlackDiamonds" />
+        <result column="proportionOfExchangeBalance" property="proportionOfExchangeBalance" />
+        <result column="sixGoldSize" property="sixGoldSize" />
+        <result column="sixBlackSize" property="sixBlackSize" />
+        <result column="goldDiamondsPerYuan" property="goldDiamondsPerYuan" />
+        <result column="faceSimilarity" property="faceSimilarity" />
+        <result column="memberUsageTime" property="memberUsageTime" />
+        <result column="appleVersion" property="appleVersion" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        appleVersion,appleVersion,faceSimilarity,exchangeRateOfGoldDiamond,exchangeRateForBlackDiamonds,proportionOfExchangeBalance,sixGoldSize,sixBlackSize,goldDiamondsPerYuan,
+        id, launchPage, drawInProportion, telephone, proportionOfReturnedServants, selfWithdrawal, giftExperienceRatio, proportionOfExperience, unitPriceOfLoudspeaker
+    </sql>
+
+</mapper>

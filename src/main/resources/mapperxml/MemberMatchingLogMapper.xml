@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.MemberMatchingLogMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.MemberMatchingLog">
+        <id column="member_matching_log_id" property="memberMatchingLogId" />
+        <result column="member_matching_log_member_id" property="memberMatchingLogMemberId" />
+        <result column="member_matching_log_member_ids_soul" property="memberMatchingLogMemberIdsSoul" />
+        <result column="member_matching_log_member_ids_car" property="memberMatchingLogMemberIdsCar" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        member_matching_log_id AS memberMatchingLogId, member_matching_log_member_id AS memberMatchingLogMemberId, member_matching_log_member_ids_soul AS memberMatchingLogMemberIdsSoul, member_matching_log_member_ids_car AS memberMatchingLogMemberIdsCar
+    </sql>
+
+</mapper>

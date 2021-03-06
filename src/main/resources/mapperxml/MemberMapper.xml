@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.MemberMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.Member">
+        <id column="id" property="id"/>
+        <result column="nickName" property="nickName"/>
+        <result column="head" property="head"/>
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="password" property="password"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="IDNumber" property="IDNumber"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="area" property="area"/>
+        <result column="addTime" property="addTime"/>
+        <result column="isvip" property="isvip"/>
+        <result column="memberExpirationDate" property="memberExpirationDate"/>
+        <result column="enableSate" property="enableSate"/>
+        <result column="facePhoto" property="facePhoto"/>
+        <result column="positivePhotoOfIDCard" property="positivePhotoOfIDCard"/>
+        <result column="level" property="level"/>
+        <result column="invitationCode" property="invitationCode"/>
+        <result column="examineState" property="examineState"/>
+        <result column="registrationChannel" property="registrationChannel"/>
+        <result column="reason" property="reason"/>
+        <result column="token" property="token"/>
+        <result column="loginSize" property="loginSize"/>
+        <result column="backgroundImages" property="backgroundImages"/>
+        <result column="pushId" property="pushId"/>
+        <result column="carLable" property="carLable"/>
+        <result column="isCustomer" property="isCustomer"/>
+        <result column="longitude" property="longitude"/>
+        <result column="latitude" property="latitude"/>
+        <result column="loginTimeofOne" property="loginTimeofOne"/>
+        <result column="numberOfRemainingFriendsToAdd" property="numberOfRemainingFriendsToAdd"/>
+        <result column="video" property="video"/>
+        <result column="activitySize" property="activitySize"/>
+        <result column="drivingLicensePhoto" property="drivingLicensePhoto"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMap1" type="com.qiqi.jiaoyou_app.vo.MemberVo">
+        <result column="id" property="id"/>
+        <result column="nickName" property="nickName"/>
+        <result column="head" property="head"/>
+        <result column="sex" property="sex"/>
+        <result column="sum" property="sum"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+backgroundImages as backgroundImages,isCustomer,longitude,latitude,numberOfRemainingFriendsToAdd,video,
+        id, nickName, head, name, phone,password, sex, age, IDNumber, province, city, area, addTime,isvip, memberExpirationDate, enableSate, facePhoto, positivePhotoOfIDCard, level,invitationCode, examineState, registrationChannel, reason,token,loginSize
+    </sql>
+
+    <select id="recommendAFriend" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT
+        *
+        FROM
+        member AS t1
+         JOIN (
+
+        SELECT
+        ROUND(
+        RAND() * (
+        (SELECT MAX(id) FROM member) - (SELECT MIN(id) FROM member)
+        ) + (SELECT MIN(id) FROM member)
+        ) AS id
+        ) AS t2
+        WHERE
+        t1.id >= t2.id
+        AND
+        t1.enableSate = 1
+        AND
+        t1.examineState = 1
+        AND
+        t1.sex != #{sex}
+        ORDER BY
+        t1.id
+        LIMIT  #{numberOfReferrals};
+    </select>
+
+    <select id="soulMatch" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT * from(
+        SELECT * FROM member
+        WHERE enableSate = 1 AND isCustomer = 2 AND examineState = 1 AND id != #{id} AND NOT ISNULL(loginTimeofOne) AND id not in ${fids}
+        ORDER BY activitySize desc ,token desc, FIELD(city, ${city})
+        ) a
+        <where>
+            <if test="sex != null">
+                and sex = #{sex}
+            </if>
+            <if test="startAge != null and endPrice != null ">
+                and age BETWEEN #{startAge} AND #{endAge}
+            </if>
+            <if test="startAge != null">
+                and age  &gt;= #{startAge}
+            </if>
+            <if test="endAge != null">
+                and age &lt;= #{endAge}
+            </if>
+        </where>
+    </select>
+
+    <select id="ridersMatch" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT * from(
+        SELECT m.* FROM member m
+        LEFT JOIN car c
+        ON m.id=c.memberId
+        WHERE m.registrationChannel = 2 AND isCustomer = 2 AND m.id != #{id} AND  enableSate = 1 AND examineState = 1 AND NOT ISNULL(loginTimeofOne)
+        ORDER BY activitySize desc, token desc, FIELD(city, ${city}) asc
+        ) a
+        <where>
+            <if test="sexs != null">
+                and sex = #{sexs}
+            </if>
+            <if test="startAge != null and endPrice != null ">
+                and age BETWEEN #{startAge} AND #{endAge}
+            </if>
+            <if test="startAge != null">
+                and age  &gt;= #{startAge}
+            </if>
+            <if test="endAge != null">
+                and age &lt;= #{endAge}
+            </if>
+        </where>
+    </select>
+    <select id="charmList" resultMap="BaseResultMap1" parameterType="java.util.Map">
+        SELECT a.id,a.nickName,a.head,a.sex,b.sum FROM member a , (
+
+        SELECT b.memberId,sum(a.price*b.giftSize) AS sum FROM gift a , giftconsumption b WHERE b.drawInProportion = 1 AND a.id = b.giftId
+        AND ${type}
+
+        GROUP BY b.memberId
+
+        ORDER BY sum DESC
+
+        ) b WHERE a.id = b.memberId
+
+        LIMIT #{numberOfPeople}
+    </select>
+    <select id="prideList" resultMap="BaseResultMap1" parameterType="java.util.Map">
+        SELECT a.id,a.nickName,a.head,a.sex,b.sum FROM member a , (
+
+        SELECT b.sendMemberId,sum(a.price*b.giftSize) AS sum FROM gift a , giftconsumption b WHERE a.id = b.giftId
+
+        AND ${type}
+
+        GROUP BY b.sendMemberId
+
+        ORDER BY sum DESC
+
+        ) b WHERE a.id = b.sendMemberId
+
+        LIMIT #{numberOfPeople}
+    </select>
+</mapper>

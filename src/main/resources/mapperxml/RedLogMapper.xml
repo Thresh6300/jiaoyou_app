@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.RedLogMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.RedLog">
+        <id column="red_log_id" property="redLogId" />
+        <result column="red_log_member_id" property="redLogMemberId" />
+        <result column="red_log_member_nick_name" property="redLogMemberNickName" />
+        <result column="red_log_member_head" property="redLogMemberHead" />
+        <result column="red_log_gold_size" property="redLogGoldSize" />
+        <result column="red_log_red_size" property="redLogRedSize" />
+        <result column="red_log_number_receipts" property="redLogNumberReceipts" />
+        <result column="red_log_number_remaining" property="redLogNumberRemaining" />
+        <result column="red_log_send_time" property="redLogSendTime" />
+        <result column="red_log_end_time" property="redLogEndTime" />
+        <result column="red_log_sex" property="redLogSex" />
+        <result column="red_log_remarks" property="redLogRemarks" />
+        <result column="type" property="type" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+red_log_sex as redLogSex,red_log_remarks as redLogRemarks,type,
+        red_log_id AS redLogId, red_log_member_id AS redLogMemberId, red_log_member_nick_name AS redLogMemberNickName, red_log_member_head AS redLogMemberHead, red_log_gold_size AS redLogGoldSize, red_log_red_size AS redLogRedSize, red_log_number_receipts AS redLogNumberReceipts, red_log_number_remaining AS redLogNumberRemaining, red_log_send_time AS redLogSendTime, red_log_end_time AS redLogEndTime
+    </sql>
+    
+    <!--更新红包已领取个数/待领取个数-->
+    <update id="updateRedNum">
+        update red_log
+        set red_log_number_receipts = red_log_number_receipts+1,
+        red_log_number_remaining = red_log_number_remaining-1
+        where red_log_id = #{redLogId,jdbcType=DECIMAL}
+    </update>
+</mapper>

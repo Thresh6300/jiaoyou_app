@@ -1,0 +1,74 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+.title{
+	width: 100%;
+	height: 54.9vw;
+}
+.content{
+	width: 91.5vw;
+	height: 54.7vw;
+	background-color: #ffffff;
+	border-radius: 2.7vw;
+	box-shadow: 0px 0px 5px 0px 
+			rgba(2, 89, 83, 0.16);
+	margin: 0 auto;
+	margin-top: 23.2vw;
+	padding-top:7.3vw ;
+}
+.ma{
+	letter-spacing: 0.4vw;
+	margin-left: 39.1vw;
+	/* font-family: SourceHanSansCN-Regular; */
+	font-weight: bold;
+	color: #333333;
+	font-size: 4.3vw;
+}
+.copy{
+	margin-top: 6.8vw;
+	margin-left: 34.9vw;
+}
+.copy>p{
+	font-size: 5.3vw;
+	display: inline-block;
+	letter-spacing: 0.5vw;
+	color: #322c4c;
+}
+.copy>span{
+	font-size: 3.7vw;
+	letter-spacing: 0.4vw;
+	color: #999999;
+}
+.lianjie{
+	margin-top: 10.9vw;
+	text-align: center;
+}
+.lianjie>a{
+	display: inline-block;
+	text-decoration: none;
+	width: 40vw;
+	height: 10.4vw;
+	text-align: center;
+	line-height: 10.4vw;
+	background-color: #eae9ed;
+	border-radius: 5.2vw;
+	border: solid 0.3vw #322c4c;
+}
+.lianjie .a1{
+	margin-right: 5.5vw;
+}
+.lianjie .a1>img{
+	margin-right: 5vw;
+}
+.lianjie>a>img{
+	width: 5.3vw;
+	height: 6.5vw;
+	vertical-align: middle;
+}
+.lianjie>a>span{
+	letter-spacing: 0vw;
+	font-weight: bold;
+	font-size: 4vw;
+	color: #3b3455;
+}

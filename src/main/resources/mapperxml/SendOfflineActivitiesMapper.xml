@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.SendOfflineActivitiesMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.SendOfflineActivities">
+        <id column="id" property="id" />
+        <result column="sendMemberId" property="sendMemberId" />
+        <result column="sendMemberHead" property="sendMemberHead" />
+        <result column="sendMemberNickName" property="sendMemberNickName" />
+        <result column="sendMemberSex" property="sendMemberSex" />
+        <result column="sendMemberAge" property="sendMemberAge" />
+        <result column="perSize" property="perSize" />
+        <result column="activityTheme" property="activityTheme" />
+        <result column="address" property="address" />
+        <result column="averageDiamondsSize" property="averageDiamondsSize" />
+        <result column="addTime" property="addTime" />
+        <result column="startTime" property="startTime" />
+        <result column="state" property="state" />
+        <result column="reason" property="reason" />
+        <result column="lable" property="lable" />
+        <result column="latitude" property="latitude" />
+        <result column="longitude" property="longitude" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+longitude,latitude,
+        id,perSize, sendMemberId, sendMemberHead, sendMemberNickName, sendMemberSex, sendMemberAge, activityTheme, address, averageDiamondsSize, addTime, startTime, state, reason, lable
+    </sql>
+
+</mapper>

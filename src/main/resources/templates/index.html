@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>APP下载</title>
+    <script type="text/javascript"
+            src="//www.shareinstall.com.cn/js/page/jshareinstall.min.js?v=d5e2cfa67a?v=f969e1d1e2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            background-color: #fff;
+        }
+
+        .container .bg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .container .logo{
+            display: block;
+            width: 2rem;
+            height: auto;
+            margin: 0.2rem auto;
+        }
+        .container .appName{
+            text-align: center;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            font-size: 0.5rem;
+            color:#333;
+            font-weight: bold;
+        }
+
+        .container .tips{
+            width: 80%;
+            text-align: center;
+            font-size: 0.32rem;
+            color:#FF4400;
+            margin: 0 auto;
+            margin-top: 0.5rem;
+        }
+
+        .container #inviteBox {
+            display: block;
+            width: 90%;
+            border-radius: 0.2rem;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, .15);
+            padding: 0 0.1rem;
+            box-sizing: border-box;
+            margin: 0 auto;
+            margin-top: 1rem;
+            padding: 0.5rem 0;
+            padding-bottom: 1rem;
+        }
+
+        .container #inviteBox h3 {
+            width: 100%;
+            height: 0.9rem;
+            text-align: center;
+            font-size: 0.42rem;
+            color: #666;
+            font-weight: normal;
+            color: #333
+        }
+
+        .container #inviteBox .num {
+            color: #3B3455;
+            font-size: 0.4rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            text-align: center;
+            font-weight: 600
+        }
+
+        .container #inviteBox ul {
+            width: 100%;
+            font-size: 0;
+            list-style: none;
+            padding: 0 0.3rem;
+            margin-top: 0.6rem;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .container #inviteBox li {
+            display: inline-block;
+            width: 47%;
+            height: 1rem;
+            line-height: 1rem;
+            vertical-align: middle;
+            border-radius: 0.5rem;
+            border: 1px solid #3B3455;
+            text-align: center;
+            background-color: #EAE9EE;
+        }
+
+        .container #inviteBox li:first-of-type {
+            margin-right: 5%;
+        }
+
+        .container #inviteBox img {
+            display: inline-block;
+            width: auto;
+            height: 0.49rem;
+            vertical-align: middle;
+            margin-right: 0.2rem;
+        }
+
+        .container #inviteBox span {
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            font-size: 0.32rem;
+            color: #3B3455;
+            font-weight: 600
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="../imgs/bg.png" alt="" class='bg'>
+    <img src="../imgs/LOGO.png" alt="" class="logo">
+    <div class="appName">Clevel</div>
+    <div id="inviteBox">
+        <h3>邀请码</h3>
+        <!-- <div class="num" th:text="${code}"></div> -->
+        <ul>
+            <li>
+                <img src="../imgs/pg.png" alt="">
+                <span id="AppledownloadButton">ios下载</span>
+            </li>
+            <li>
+                <img src="../imgs/az.png" alt="">
+                <span id="AndownloadButton">Android下载</span>
+            </li>
+
+        </ul>
+    </div>
+    <div class="tips">【注意】苹果手机下载试用版本需要授信。步骤如下：点击设置→通用→设备管理→企业级APP→信任该APP，即可使用。</div>
+</div>
+<script src="../js/rem.js"></script>
+<script src="../js/jquery-3.4.0.js"></script>
+<script type="text/javascript">
+    var data = ShareInstall.parseUrlParams();
+    new ShareInstall({
+        appKey: 'FBBK6FRHE72A7R',
+        preferWakeup: true,
+        timeout: 1500,
+        onready: function () {
+            var m = this,
+                button = document.getElementById("AppledownloadButton"),
+                button1 = document.getElementById("AndownloadButton");
+            button.style.visibility = "visible";
+            button1.style.visibility = "visible";
+            button.onclick = function () {
+                m.wakeupOrInstall();
+            }
+            button1.onclick = function () {
+                m.wakeupOrInstall();
+            }
+        }
+    }, data);
+</script>
+</body>
+</html>
+

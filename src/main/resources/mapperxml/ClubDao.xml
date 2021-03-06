@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.ClubMapper">
+    <resultMap type="com.qiqi.jiaoyou_app.pojo.Club" id="ClubMap">
+        <result property="clubId" column="club_id" jdbcType="INTEGER"/>
+        <result property="clubName" column="club_name" jdbcType="VARCHAR"/>
+        <result property="clubIcon" column="club_icon" jdbcType="VARCHAR"/>
+        <result property="clubGrade" column="club_grade" jdbcType="INTEGER"/>
+        <result property="clubIntroduction" column="club_introduction" jdbcType="VARCHAR"/>
+        <result property="wage" column="wage" jdbcType="INTEGER"/>
+        <result property="wageTime" column="wage_time" jdbcType="VARCHAR"/>
+        <result property="clubNotice" column="club_notice" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="memberId" column="memberId" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="totalWages" column="total_wages" jdbcType="NUMERIC"/>
+        <result property="privacyMode" column="privacy_mode" jdbcType="VARCHAR"/>
+        <result property="secretaryNumber" column="secretary_number" jdbcType="INTEGER"/>
+        <result property="sum" column="sum" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--通过实体作为筛选条件查询
+    查询出当前时间 在发工资之前的俱乐部信息
+    -->
+    <select id="getQuestionsTime" resultMap="ClubMap">
+        SELECT * FROM (
+        SELECT
+        c.* ,
+        (SELECT count(*) FROM club_buddy a WHERE a.club_id=c.club_id and secretary_status='0') sum,
+        STR_TO_DATE((CONCAT(CONCAT(SUBSTR(now(), 1, 11),wage_time),':00')) ,'%Y-%m-%d %H:%i:%s') AS ha
+        FROM club c
+        WHERE today_wage = '0' and wage!=0 and c.club_id not in (#{clubIds})
+        ) a
+        WHERE ha &lt;= now() and sum &gt; 0
+    </select>
+
+
+</mapper>

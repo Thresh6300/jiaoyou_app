@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.WithdrawMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.Withdraw">
+        <id column="id" property="id" />
+        <result column="memberId" property="memberId" />
+        <result column="memberNickName" property="memberNickName" />
+        <result column="memberHead" property="memberHead" />
+        <result column="memberPhone" property="memberPhone" />
+        <result column="price" property="price" />
+        <result column="bankName" property="bankName" />
+        <result column="bankMemberName" property="bankMemberName" />
+        <result column="bankNumber" property="bankNumber" />
+        <result column="applyTime" property="applyTime" />
+        <result column="reason" property="reason" />
+        <result column="examineTime" property="examineTime" />
+        <result column="examineState" property="examineState" />
+        <result column="balance" property="balance"/>
+        <result column="oldOrNew" property="oldOrNew"/>
+        <result column="isExamine" property="isExamine"/>
+        <result column="proportion" property="proportion"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        balance,oldOrNew,isExamine,
+        id, memberId, memberNickName, memberHead, memberPhone, price, bankName, bankMemberName, bankNumber, applyTime, reason, examineTime, examineState,proportion
+    </sql>
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.NewFriendMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.NewFriend">
+        <id column="new_friend_id" property="newFriendId" />
+        <result column="new_friend_oneself_id" property="newFriendOneselfId" />
+        <result column="new_friend_other_party_id" property="newFriendOtherPartyId" />
+        <result column="new_friend_other_party_head" property="newFriendOtherPartyHead" />
+        <result column="new_friend_other_party_auto_logos" property="newFriendOtherPartyAutoLogos" />
+        <result column="new_friend_other_party_nick_name" property="newFriendOtherPartyNickName" />
+        <result column="new_friend_other_party_level" property="newFriendOtherPartyLevel" />
+        <result column="new_friend_other_party_sex" property="newFriendOtherPartySex" />
+        <result column="new_friend_other_party_age" property="newFriendOtherPartyAge" />
+        <result column="new_friend_other_party_city" property="newFriendOtherPartyCity" />
+        <result column="new_friend_other_party_add_time" property="newFriendOtherPartyAddTime" />
+        <result column="new_friend_other_party_end_time" property="newFriendOtherPartyEndTime" />
+        <result column="new_friend_other_party_gift_id" property="newFriendOtherPartyGiftId" />
+        <result column="new_friend_other_party_gift_image" property="newFriendOtherPartyGiftImage" />
+        <result column="new_friend_other_party_gift_name" property="newFriendOtherPartyGiftName" />
+        <result column="new_friend_other_party_gift_size" property="newFriendOtherPartyGiftSize" />
+        <result column="remarks" property="remarks" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+new_friend_other_party_gift_id as newFriendOtherPartyGiftId,
+new_friend_other_party_end_time as newFriendOtherPartyEndTime,
+        new_friend_id AS newFriendId, new_friend_oneself_id AS newFriendOneselfId, new_friend_other_party_id AS newFriendOtherPartyId, new_friend_other_party_head AS newFriendOtherPartyHead, new_friend_other_party_auto_logos AS newFriendOtherPartyAutoLogos, new_friend_other_party_nick_name AS newFriendOtherPartyNickName, new_friend_other_party_level AS newFriendOtherPartyLevel, new_friend_other_party_sex AS newFriendOtherPartySex, new_friend_other_party_age AS newFriendOtherPartyAge, new_friend_other_party_city AS newFriendOtherPartyCity, new_friend_other_party_add_time AS newFriendOtherPartyAddTime, new_friend_other_party_gift_image AS newFriendOtherPartyGiftImage, new_friend_other_party_gift_name AS newFriendOtherPartyGiftName, new_friend_other_party_gift_size AS newFriendOtherPartyGiftSize
+    </sql>
+
+</mapper>

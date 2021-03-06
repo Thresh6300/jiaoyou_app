@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.MemberAssetsMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.MemberAssets">
+        <id column="id" property="id"/>
+        <result column="memberId" property="memberId"/>
+        <result column="memberDiamondsizeOfBlack" property="memberDiamondsizeOfBlack"/>
+        <result column="memberDiamondsizeOfGold" property="memberDiamondsizeOfGold"/>
+        <result column="memberDiamondsizeOfSilver" property="memberDiamondsizeOfSilver"/>
+        <result column="memberhornSize" property="memberhornSize"/>
+        <result column="meberExperienceSize" property="meberExperienceSize"/>
+        <result column="memberLabel" property="memberLabel"/>
+        <result column="ciphertext" property="ciphertext"/>
+        <result column="oldMemberDiamondsizeOfBlack" property="oldMemberDiamondsizeOfBlack"/>
+        <result column="oldMemberDiamondsizeOfSilver" property="oldMemberDiamondsizeOfSilver"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, memberId,oldMemberDiamondsizeOfBlack,oldMemberDiamondsizeOfSilver,
+memberDiamondsizeOfBlack, memberDiamondsizeOfGold ,memberDiamondsizeOfSilver, memberhornSize, meberExperienceSize, memberLabel, ciphertext
+    </sql>
+
+</mapper>

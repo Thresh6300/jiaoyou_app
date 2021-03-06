@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.AgreementMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.Agreement">
+        <id column="untitled" property="untitled" />
+        <result column="aboutUS" property="aboutUS" />
+        <result column="registrationAgreement" property="registrationAgreement" />
+        <result column="memberDescription" property="memberDescription" />
+        <result column="sharingRules" property="sharingRules" />
+        <result column="greenCard" property="greenCard" />
+        <result column="privacy" property="privacy" />
+        <result column="editTime" property="editTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        untitled, aboutUS, registrationAgreement, memberDescription, sharingRules,greenCard, privacy, editTime
+    </sql>
+
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqi.jiaoyou_app.mapper.LableMapper">
+
+
+<!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qiqi.jiaoyou_app.pojo.Lable">
+        <id column="label_id" property="labelId" />
+        <result column="member_id" property="memberId" />
+        <result column="label_charm_default" property="labelCharmDefault" />
+        <result column="label_charm_select" property="labelCharmSelect" />
+        <result column="label_city_default" property="labelCityDefault" />
+        <result column="label_city_select" property="labelCitySelect" />
+        <result column="label_local_default" property="labelLocalDefault" />
+        <result column="label_local_select" property="labelLocalSelect" />
+        <result column="label_hobby_default" property="labelHobbyDefault" />
+        <result column="label_hobby_select" property="labelHobbySelect" />
+        <result column="label_education_default" property="labelEducationDefault" />
+        <result column="label_education_select" property="labelEducationSelect" />
+        <result column="lable_state_default" property="lableStateDefault" />
+        <result column="lable_state_select" property="lableStateSelect" />
+        <result column="lable_annual_income_default" property="lableAnnualIncomeDefault" />
+        <result column="lable_annual_income_select" property="lableAnnualIncomeSelect" />
+        <result column="lable_car_size_default" property="lableCarSizeDefault" />
+        <result column="lable_car_size_select" property="lableCarSizeSelect" />
+        <result column="lable_image_default" property="lableImageDefault" />
+        <result column="lable_image_select" property="lableImageSelect" />
+        <result column="lable_character_default" property="lableCharacterDefault" />
+        <result column="lable_character_select" property="lableCharacterSelect" />
+        <result column="lable_industry_default" property="lableIndustryDefault" />
+        <result column="lable_industry_select" property="lableIndustrySelect" />
+        <result column="lable_height" property="lableHeight" />
+        <result column="lable_weight" property="lableWeight" />
+        <result column="lable_drinking_power" property="lableDrinkingPower" />
+        <result column="lable_pets" property="lablePets" />
+        <result column="lable_introduce" property="lableIntroduce" />
+        <result column="lable_smoking_status" property="lableSmokingStatus" />
+        <result column="lable_occupation" property="lableOccupation" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+lable_industry_default as lableIndustryDefault,
+lable_industry_select as lableIndustrySelect,
+lable_smoking_status as lableSmokingStatus,
+lable_occupation as lableOccupation,
+        label_id AS labelId, member_id AS memberId, label_charm_default AS labelCharmDefault, label_charm_select AS labelCharmSelect, label_city_default AS labelCityDefault, label_city_select AS labelCitySelect, label_local_default AS labelLocalDefault, label_local_select AS labelLocalSelect, label_hobby_default AS labelHobbyDefault, label_hobby_select AS labelHobbySelect, label_education_default AS labelEducationDefault, label_education_select AS labelEducationSelect, lable_state_default AS lableStateDefault, lable_state_select AS lableStateSelect, lable_annual_income_default AS lableAnnualIncomeDefault, lable_annual_income_select AS lableAnnualIncomeSelect, lable_car_size_default AS lableCarSizeDefault, lable_car_size_select AS lableCarSizeSelect, lable_image_default AS lableImageDefault, lable_image_select AS lableImageSelect, lable_character_default AS lableCharacterDefault, lable_character_select AS lableCharacterSelect, lable_height AS lableHeight, lable_weight AS lableWeight, lable_drinking_power AS lableDrinkingPower, lable_pets AS lablePets, lable_introduce AS lableIntroduce
+    </sql>
+
+</mapper>
